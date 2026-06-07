@@ -24,6 +24,10 @@ cv-adjuster/
   cv_output.tex        # most recent tailored CV
   your_name_curriculum_vitae.pdf  # most recent compiled output (canonical filename)
   cover_letter_<company>.tex/.pdf   # per-company cover letters
+  .claude/
+    skills/
+      applika-cli/     # Claude skill: track applications via the Applika CLI
+      humanizer/       # Claude skill: strip AI-writing tells from generated text
   job_descriptions/
     <company>_<role>/  # durable per-application archive
       jd.md
@@ -79,15 +83,15 @@ applika whoami                # confirm the session
 
 `login` is interactive (opens a browser) and auto-refreshes, so it is needed only once per device. In a Claude Code session, run it yourself with `! applika login`.
 
-### AI skill
+### Claude skill
 
-The `applika-cli` skill is installed under `~/.claude/skills/applika-cli/`. It triggers whenever Applika is mentioned and provides the full command reference. Reinstall with:
+The recording step is backed by the `applika-cli` Claude skill, not raw CLI calls. See [Claude Code skills](#claude-code-skills) below for how it triggers and what it does. Reinstall the skill bundle with:
 
 ```bash
 applika skill --dir "C:\Users\<user>\.claude\skills"
 ```
 
-> Note: on Windows the CLI throws a harmless `UnicodeEncodeError` when printing its success arrow (`â†’`) under the cp1252 console. The copy completes before the crash; verify the directory exists rather than trusting the exit code.
+> Note: on Windows the CLI throws a harmless `UnicodeEncodeError` when printing its success arrow (`->`) under the cp1252 console. The copy completes before the crash; verify the directory exists rather than trusting the exit code.
 
 ### Recording an application
 
@@ -124,6 +128,26 @@ applika applications steps list [ID]
 applika applications steps add [ID] --step <step> --date <YYYY-MM-DD>
 applika applications finalize [ID] --step <step> --feedback <text> --date <YYYY-MM-DD>
 ```
+
+## Claude Code skills
+
+Two Claude Code skills ship in `.claude/skills/` and drive parts of the workflow. They are skills, not shell tools: trigger them inside a Claude Code session by name (`/skill-name`) or by phrasing that matches their description. Claude loads the skill file and follows it.
+
+### applika-cli
+
+- **Location:** `.claude/skills/applika-cli/SKILL.md`
+- **Invoke:** `/applika-cli`, or just mention "applika" (log, list, create, edit an application). It auto-triggers on those.
+- **What it does:** wraps the Applika CLI for application tracking. It enforces login-first: it runs `applika whoami` to verify the session before any other command, and walks the `applications new/list/edit/steps/finalize` flows with the right flags. This is the layer the workflow's "record in Applika" step uses, so you get consistent metadata instead of hand-typed CLI calls.
+- **Install:** `applika skill --dir "<path>\.claude\skills"` (see the Applika section for the Windows note).
+
+### humanizer
+
+- **Location:** `.claude/skills/humanizer/SKILL.md`
+- **Invoke:** `/humanizer`, or ask to "humanize" or de-AI a piece of text. It runs automatically as the mandatory humanizer pass (workflow step 6) over every CV, cover letter, and outreach message.
+- **What it does:** strips signs of AI-generated writing, based on Wikipedia's "Signs of AI writing" guide. It removes inflated symbolism, promotional language, vague attributions, rule-of-three triplets, negative parallelisms, AI vocabulary, and filler, and enforces the project's hard ban on em dashes. The goal is output that reads like a strong engineer wrote it, with the technical precision intact.
+- **License:** MIT, based on the Wikipedia guide. Bundled here so the humanizer pass is reproducible on any clone.
+
+The hard rules these skills enforce (zero em dashes, no fabricated content, login-before-write) are also documented in `CLAUDE.md`, which is the source of truth if the skill text and the ruleset ever drift.
 
 ## Output rules (non-negotiable)
 
