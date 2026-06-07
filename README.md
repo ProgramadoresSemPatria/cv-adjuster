@@ -46,6 +46,24 @@ cv-adjuster/
 
 ## Generation workflow
 
+```mermaid
+flowchart TD
+    A[Job description + extra skills] --> B[Read cv_base.tex<br/>content source of truth]
+    B --> C[Analyze JD<br/>Must-Have vs Nice-to-Have<br/>location/visa, seniority]
+    C --> D[Generate cv_output.tex<br/>sections ordered by JD signal]
+    D --> E[Build keyword coverage matrix]
+    E --> F{Must-Have gaps?}
+    F -->|yes| D
+    F -->|no| G[Humanizer pass<br/>zero em dashes, no AI tells]
+    G --> H[Compile with tectonic<br/>cv_output.tex to PDF]
+    H --> I[Validate<br/>pdftotext extraction + reading order]
+    I --> J{All Must-Have<br/>keywords parse?}
+    J -->|no| D
+    J -->|yes| K[Archive under<br/>job_descriptions/company_role/]
+    K --> L[Record in Applika<br/>applika applications new]
+    L --> M[Deliver files]
+```
+
 Driven by an agent per `CLAUDE.md` (Claude Code) or `AGENTS.md` (Codex). High level:
 
 1. Provide the job description and any extra target skills.
