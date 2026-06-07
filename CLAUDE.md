@@ -1,4 +1,4 @@
-# CV Adjuster - ATS-Optimized CV Generation
+﻿# CV Adjuster - ATS-Optimized CV Generation
 
 ## Purpose
 
@@ -629,7 +629,7 @@ Never place dates:
 - In a side column
 - Centered or left-aligned on their own line
 
-Reason: dates on a separate line are frequently mis-attributed to the adjacent role by ATS parsers. Same-line placement preserves the role↔date pairing in `pdftotext` extraction order.
+Reason: dates on a separate line are frequently mis-attributed to the adjacent role by ATS parsers. Same-line placement preserves the roleâ†”date pairing in `pdftotext` extraction order.
 
 ## Role Header Order
 
@@ -640,7 +640,7 @@ Within each role block, the field order MUST be:
 3. Dates (right-aligned via `\hfill` on the same line as Company)
 4. Location (optional, same line as Role or below)
 
-Many ATS parsers use positional pattern matching tuned to `Company → Role → Dates`. Reordering (e.g., `Role → Company → Dates`) confuses parsers and can drop the company name from the parsed experience entry.
+Many ATS parsers use positional pattern matching tuned to `Company â†’ Role â†’ Dates`. Reordering (e.g., `Role â†’ Company â†’ Dates`) confuses parsers and can drop the company name from the parsed experience entry.
 
 ---
 
@@ -661,7 +661,7 @@ Do NOT place critical information in:
 
 ### Contact Block Layout
 
-The contact block MUST be a single line (or at most two lines) directly below the name, with fields separated by a pipe `|` or middle dot `·`:
+The contact block MUST be a single line (or at most two lines) directly below the name, with fields separated by a pipe `|` or middle dot `Â·`:
 
 ```text
 Your Name
@@ -755,14 +755,14 @@ Use simple bullets:
 
 ### Bullet Character Whitelist
 
-Only `•` (U+2022) or `-` (hyphen-minus) are permitted as bullet markers.
+Only `â€¢` (U+2022) or `-` (hyphen-minus) are permitted as bullet markers.
 
 Never use:
-- `▸ ★ ➤ → ◦ ●` (extended dingbats)
+- `â–¸ â˜… âž¤ â†’ â—¦ â—` (extended dingbats)
 - Any emoji
 - Custom Unicode glyphs
 
-Reason: exotic bullet glyphs extract as `?`, `□`, or get dropped entirely by `pdftotext` and ATS parsers, which then mis-attribute or lose the bullet's text.
+Reason: exotic bullet glyphs extract as `?`, `â–¡`, or get dropped entirely by `pdftotext` and ATS parsers, which then mis-attribute or lose the bullet's text.
 
 ### Single-Level Bullets Only
 
@@ -857,7 +857,7 @@ Goals:
 - Preserve technical precision
 
 Specifically remove:
-- ALL em dashes. Hard ban. Replace every `—` and `--` with a comma, colon, or parentheses depending on context. No exceptions in CV, cover letter, or outreach output.
+- ALL em dashes. Hard ban. Replace every `â€”` and `--` with a comma, colon, or parentheses depending on context. No exceptions in CV, cover letter, or outreach output.
 - Overly polished corporate wording
 - Buzzword stacking
 - Formulaic sentence patterns
@@ -913,7 +913,7 @@ Perform:
 Concrete validation commands:
 
 ```bash
-pdftotext joao_soares_curriculum_vitae.pdf - > /tmp/cv_extracted.txt
+pdftotext your_name_curriculum_vitae.pdf - > /tmp/cv_extracted.txt
 
 # For every Must-Have keyword from the JD, confirm it appears:
 grep -i "kubernetes" /tmp/cv_extracted.txt
@@ -931,13 +931,13 @@ Any Must-Have keyword that fails its grep is a blocker. Do not deliver.
 Run `pdftotext` WITHOUT the `-layout` flag and confirm the extracted text reads top-to-bottom in the same logical order as the visual document:
 
 ```bash
-pdftotext joao_soares_curriculum_vitae.pdf - > /tmp/cv_reading_order.txt
+pdftotext your_name_curriculum_vitae.pdf - > /tmp/cv_reading_order.txt
 ```
 
 Verify in `/tmp/cv_reading_order.txt`:
 1. Name appears first
 2. Contact line appears immediately after name
-3. Sections appear in the intended order (Summary → Experience → Skills → ...)
+3. Sections appear in the intended order (Summary â†’ Experience â†’ Skills â†’ ...)
 4. Within each role: Company, Role, Dates, then bullets, in that order
 5. No bullets appear before their parent role
 6. No fragments from page 2 interleave with page 1
@@ -945,7 +945,7 @@ Verify in `/tmp/cv_reading_order.txt`:
 Also run with `-layout` to cross-check:
 
 ```bash
-pdftotext -layout joao_soares_curriculum_vitae.pdf - > /tmp/cv_layout.txt
+pdftotext -layout your_name_curriculum_vitae.pdf - > /tmp/cv_layout.txt
 diff /tmp/cv_reading_order.txt /tmp/cv_layout.txt
 ```
 
@@ -1009,10 +1009,10 @@ Before delivering the final CV:
 - [ ] Scaffolding grep returns no hits
 - [ ] Per-application archive folder is populated
 - [ ] Application recorded in Applika via `applika applications new` (or skipped with a note if CLI not set up)
-- [ ] Bullet markers are only `•` or `-`, no exotic glyphs
+- [ ] Bullet markers are only `â€¢` or `-`, no exotic glyphs
 - [ ] No nested `itemize` environments
 - [ ] Dates appear on the same line as Company via `\hfill`
-- [ ] Role header order is Company → Role → Dates
+- [ ] Role header order is Company â†’ Role â†’ Dates
 - [ ] Contact info is a single line, pipe-separated
 - [ ] No photos, no icon-font glyphs anywhere
 - [ ] No italic styling on any keyword/technology name
@@ -1030,7 +1030,7 @@ cv_adjuster/
   CLAUDE.md
   cv_base.tex
   cv_output.tex
-  joao_soares_curriculum_vitae.pdf
+  your_name_curriculum_vitae.pdf
   cover_letter.tex
   cover_letter.pdf
   cover_letter.txt
@@ -1040,7 +1040,7 @@ cv_adjuster/
     <company>_<role>/
       jd.md
       cv_output.tex
-      joao_soares_curriculum_vitae.pdf
+      your_name_curriculum_vitae.pdf
       cover_letter_<company>.tex
       cover_letter_<company>.pdf
       coverage.md
@@ -1055,7 +1055,7 @@ Rules:
 - Save the raw JD as `jd.md`
 - Save the tailored `.tex` and final PDF inside the folder
 - Save the keyword coverage matrix as `coverage.md`
-- The root `cv_output.tex` and `joao_soares_curriculum_vitae.pdf` reflect the most recent run, but the archive is the durable record
+- The root `cv_output.tex` and `your_name_curriculum_vitae.pdf` reflect the most recent run, but the archive is the durable record
 
 Reason: without archives, each new application overwrites the prior output and there is no audit trail of what was sent to which company.
 
@@ -1110,7 +1110,7 @@ Rules:
 The final compiled CV PDF MUST always be:
 
 ```bash
-joao_soares_curriculum_vitae.pdf
+your_name_curriculum_vitae.pdf
 ```
 
 Never deliver:
@@ -1140,7 +1140,7 @@ A generic `cover_letter.pdf` may exist at the repo root as the most recent run, 
 Compile using:
 
 ```bash
-tectonic cv_output.tex && mv cv_output.pdf joao_soares_curriculum_vitae.pdf
+tectonic cv_output.tex && mv cv_output.pdf your_name_curriculum_vitae.pdf
 ```
 
 ---

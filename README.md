@@ -1,4 +1,4 @@
-# CV Adjuster
+﻿# CV Adjuster
 
 ATS-optimized CV generation. Tailors a master LaTeX CV to a specific job description, maximizing compatibility with Applicant Tracking Systems, recruiter search, AI screening, and human review, without fabricating experience.
 
@@ -8,7 +8,7 @@ The full ruleset lives in [`CLAUDE.md`](CLAUDE.md). This README is the operation
 
 Given a job description, it produces:
 
-- A tailored `cv_output.tex`, compiled to `joao_soares_curriculum_vitae.pdf`
+- A tailored `cv_output.tex`, compiled to `your_name_curriculum_vitae.pdf`
 - A per-company cover letter (`cover_letter_<company>.tex` / `.pdf`)
 - A keyword coverage matrix (`coverage.md`)
 - A durable archive under `job_descriptions/<company>_<role>/`
@@ -22,13 +22,13 @@ cv-adjuster/
   README.md            # this file
   cv_base.tex          # master CV with ALL truthful experience (source of truth for content)
   cv_output.tex        # most recent tailored CV
-  joao_soares_curriculum_vitae.pdf  # most recent compiled output (canonical filename)
+  your_name_curriculum_vitae.pdf  # most recent compiled output (canonical filename)
   cover_letter_<company>.tex/.pdf   # per-company cover letters
   job_descriptions/
     <company>_<role>/  # durable per-application archive
       jd.md
       cv_output.tex
-      joao_soares_curriculum_vitae.pdf
+      your_name_curriculum_vitae.pdf
       cover_letter_<company>.tex/.pdf
       coverage.md
 ```
@@ -52,8 +52,8 @@ Driven by Claude Code per `CLAUDE.md`. High level:
 7. Compile and validate:
 
    ```bash
-   tectonic cv_output.tex && mv cv_output.pdf joao_soares_curriculum_vitae.pdf
-   pdftotext joao_soares_curriculum_vitae.pdf - > /tmp/cv_extracted.txt
+   tectonic cv_output.tex && mv cv_output.pdf your_name_curriculum_vitae.pdf
+   pdftotext your_name_curriculum_vitae.pdf - > /tmp/cv_extracted.txt
    ```
 
 8. Archive under `job_descriptions/<company>_<role>/`.
@@ -87,7 +87,7 @@ The `applika-cli` skill is installed under `~/.claude/skills/applika-cli/`. It t
 applika skill --dir "C:\Users\<user>\.claude\skills"
 ```
 
-> Note: on Windows the CLI throws a harmless `UnicodeEncodeError` when printing its success arrow (`→`) under the cp1252 console. The copy completes before the crash; verify the directory exists rather than trusting the exit code.
+> Note: on Windows the CLI throws a harmless `UnicodeEncodeError` when printing its success arrow (`â†’`) under the cp1252 console. The copy completes before the crash; verify the directory exists rather than trusting the exit code.
 
 ### Recording an application
 
@@ -127,7 +127,7 @@ applika applications finalize [ID] --step <step> --feedback <text> --date <YYYY-
 
 ## Output rules (non-negotiable)
 
-- Final CV PDF is always `joao_soares_curriculum_vitae.pdf`.
+- Final CV PDF is always `your_name_curriculum_vitae.pdf`.
 - Cover letters are per-company: `cover_letter_<company>.pdf` / `.tex`.
 - Every Must-Have keyword must appear in the CV and pass `pdftotext` extraction.
 - Zero em dashes anywhere (CV, cover letter, outreach).
