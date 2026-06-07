@@ -2,7 +2,7 @@
 
 ATS-optimized CV generation. Tailors a master LaTeX CV to a specific job description, maximizing compatibility with Applicant Tracking Systems, recruiter search, AI screening, and human review, without fabricating experience.
 
-The full ruleset lives in [`CLAUDE.md`](CLAUDE.md). This README is the operational quick reference.
+The full ruleset lives in [`CLAUDE.md`](CLAUDE.md). This README is the operational quick reference. It runs under Claude Code (reads `CLAUDE.md`) and OpenAI Codex (reads [`AGENTS.md`](AGENTS.md)); see [Using with Codex](#using-with-codex-and-other-agents).
 
 ## What this repo does
 
@@ -19,6 +19,7 @@ Given a job description, it produces:
 ```text
 cv-adjuster/
   CLAUDE.md            # full generation ruleset (source of truth for behavior)
+  AGENTS.md            # Codex entry point; routes to CLAUDE.md
   README.md            # this file
   cv_base.tex          # master CV with ALL truthful experience (source of truth for content)
   cv_output.tex        # most recent tailored CV
@@ -45,7 +46,7 @@ cv-adjuster/
 
 ## Generation workflow
 
-Driven by Claude Code per `CLAUDE.md`. High level:
+Driven by an agent per `CLAUDE.md` (Claude Code) or `AGENTS.md` (Codex). High level:
 
 1. Provide the job description and any extra target skills.
 2. The base CV (`cv_base.tex`) is read as the content source of truth.
@@ -148,6 +149,23 @@ Two Claude Code skills ship in `.claude/skills/` and drive parts of the workflow
 - **License:** MIT, based on the Wikipedia guide. Bundled here so the humanizer pass is reproducible on any clone.
 
 The hard rules these skills enforce (zero em dashes, no fabricated content, login-before-write) are also documented in `CLAUDE.md`, which is the source of truth if the skill text and the ruleset ever drift.
+
+## Using with Codex (and other agents)
+
+The project is not Claude-only. The same ruleset drives [OpenAI Codex](https://github.com/openai/codex) through [`AGENTS.md`](AGENTS.md), Codex's instruction-file convention.
+
+- **Claude Code** reads `CLAUDE.md` and auto-loads the skills in `.claude/skills/`.
+- **Codex** reads `AGENTS.md`, which routes to `CLAUDE.md` as the full ruleset and adapts the parts that assume Claude's skill system.
+
+`CLAUDE.md` stays the single source of truth. `AGENTS.md` is a thin router, not a second copy, so the two cannot drift on the actual rules.
+
+What changes under Codex:
+
+- **No skill auto-trigger.** Codex has no `/applika-cli` or `/humanizer`. The skill files become reference docs the agent reads on demand: `.claude/skills/humanizer/SKILL.md` for the mandatory humanizer pass, `.claude/skills/applika-cli/SKILL.md` for the Applika flow.
+- **Same CLI.** The `applika` CLI is agent-agnostic and behaves identically; `applika login` / `whoami` / `applications new` work the same.
+- **Same prerequisites.** `tectonic`, `pdftotext`, `applika-cli`.
+
+`applika skill` can install the Applika skill bundle into a Codex skills directory too; its interactive picker lists Claude, Gemini, Codex, and OpenCode.
 
 ## Output rules (non-negotiable)
 
