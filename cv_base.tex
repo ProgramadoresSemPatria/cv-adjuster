@@ -1,0 +1,199 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{needspace}
+
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+\definecolor{headercolor}{RGB}{0, 0, 0}
+\definecolor{accentcolor}{RGB}{0, 51, 102}
+
+\hypersetup{colorlinks=true, linkcolor=accentcolor, urlcolor=accentcolor}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=*, nosep, itemsep=1pt, label=\textbullet}
+
+\newcommand{\cvsection}[1]{%
+    \vspace{8pt}%
+    {\large\bfseries\uppercase{#1}}\\[2pt]%
+    \vspace{2pt}%
+}
+
+\newcommand{\rolehead}[4]{%
+    \needspace{4\baselineskip}%
+    \textbf{#1} \hfill #2\\
+    \textit{#3} \hfill #4\\
+}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\bfseries\color{headercolor} Your Name}\\[3pt]
+    {\normalsize Software Engineer | Backend Architecture | Cloud \& Web3}\\[4pt]
+    {\footnotesize +XX XXX XXX XXXX $\cdot$ your.email@example.com $\cdot$ \href{https://www.linkedin.com/in/your-handle/}{linkedin.com/in/your-handle} $\cdot$ \href{https://github.com/your-handle}{github.com/your-handle} $\cdot$ Country (UTC) | Remote}
+\end{center}
+
+\cvsection{Summary}
+{\footnotesize Backend Engineer with 6+ years building production systems in Golang. Focused on concurrency, distributed architectures, microservices, and observability on Kubernetes. Fixed a critical Kafka bug in a system processing 140M+ monthly transactions, cut query times by up to 85\%, and helped ship the company's first AI/RAG feature. Builds LLM applications and AI-assisted developer tooling integrating Claude, OpenAI Codex, and Gemini. Contributes to the Zed code editor in Rust (70k+ GitHub stars) and ships smart contracts on Ethereum (Solidity) and Solana.}
+
+\cvsection{Professional Experience}
+
+\rolehead{Platform Builders}{Aug 2025 - Present}{Senior Golang Engineer}{Brazil (Remote)}
+{\footnotesize Full-time | RD Sa\'{u}de (Raia Drogasil), Brazil's largest pharmacy chain (\textasciitilde R\$12B annual revenue)}
+\nopagebreak
+\begin{itemize}
+    \item {\footnotesize Fixed a concurrency bug in the invoicing pipeline that caused fiscal compliance failures across 140M+ monthly transactions. Used mutex-based synchronization to eliminate the race condition.}
+    \item {\footnotesize Hardened Apache Kafka consumers with lock-based deduplication, reaching 99.99\% idempotency and stopping duplicate invoice generation.}
+    \item {\footnotesize Migrated the database layer from Oracle to PostgreSQL. Rewrote execution plans and added targeted indexes, cutting query times by over 1 minute on the slowest queries.}
+    \item {\footnotesize Eliminated Oracle Database licensing fees and cut JVM memory footprint by migrating the invoicing stack from Java/Oracle to Golang/PostgreSQL, saving roughly \$10k in licensing and compute costs.}
+    \item {\footnotesize Maintained 98\%+ unit test coverage across 60+ Golang microservices, catching regressions before they reached the invoicing pipeline.}
+    \item {\footnotesize Rolled out Datadog Orchestrion auto-instrumentation across 60+ Golang microservices, giving DevOps and engineers request tracing and runtime visibility in production.}
+    \item {\footnotesize Refactored goroutine lifecycle and pool management across backend services, reducing request latency by 40\%.}
+    \item {\footnotesize Helped build the company's first AI feature: a Retrieval-Augmented Generation (RAG) system letting users query business rules and endpoint/screen behavior in natural language.}
+    \item {\footnotesize Mentored 5 developers on Go concurrency patterns and architecture. Team velocity went up 30\% over the following quarter.}
+    \item {\footnotesize Tech Stack: Golang, Apache Kafka, PostgreSQL, Docker, Kubernetes, ArgoCD, Datadog, OCI (Oracle Cloud), REST API, Microservices.}
+\end{itemize}
+
+\rolehead{Borderless Coding}{Sep 2025 - Present}{Web3 Technical Mentor \& Ambassador}{USA (Remote)}
+{\footnotesize Part-time}
+\nopagebreak
+\begin{itemize}
+    \item {\footnotesize Mentored 60+ engineers on Solidity smart contracts and blockchain architecture. 95\% satisfaction rate across cohorts.}
+    \item {\footnotesize Ran 20+ live workshops on smart contract development using Foundry, Hardhat, and Remix IDE. 90\% of participants completed the full course.}
+    \item {\footnotesize Grew the technical community by 200\% with hands-on content covering Ethereum, Solana, and DeFi protocols.}
+\end{itemize}
+
+\rolehead{Docile Alimentos LTDA}{Jan 2020 - Aug 2025}{Senior Fullstack Engineer}{Brazil (Remote)}
+{\footnotesize Full-time | B2C food manufacturer (\textasciitilde R\$1B annual revenue)}
+\nopagebreak
+\begin{itemize}
+    \item {\footnotesize Migrated a Java/JSF monolith to Spring Boot microservices, cutting new-feature delivery time by \textasciitilde3 days per task and resolving long-standing reliability issues from the legacy system.}
+    \item {\footnotesize Built a MongoDB-backed application for the Accounting team to auto-validate fiscal documents (NF-e) against user-defined rule sets. Owned the database and indexing strategy, cutting query times by up to 85\% (over 1 minute reduction on the heaviest aggregations).}
+    \item {\footnotesize Designed and built a Golang internal platform used by Commercial and Marketing to manage promotional campaigns for B2C clients, replacing manual spreadsheet workflows.}
+    \item {\footnotesize Built Golang backend services for data processing. Introduced concurrency patterns that increased throughput by 50\%.}
+    \item {\footnotesize Built Python RPAs adopted by Financial, Commercial, Accounting, and Marketing teams, automating file imports and recurring workflows. Saved up to a full workday per task and \textasciitilde15 hours/week on imports alone.}
+    \item {\footnotesize Rewrote indexes on 20+ PostgreSQL queries, averaging 45\% faster execution times.}
+    \item {\footnotesize Onboarded new engineers on application architecture, database design, SQL query optimization, production data analysis, and engineering environment setup.}
+    \item {\footnotesize Tech Stack: Golang, Java, Spring Boot, NestJS, Python, React, Angular, MongoDB, PostgreSQL, SQL Server, Docker, Linux, RPA, REST API, Microservices.}
+\end{itemize}
+
+\cvsection{Open Source Contributions}
+
+\noindent\textbf{\footnotesize Zed Editor} {\footnotesize $\cdot$ \href{https://github.com/zed-industries/zed}{github.com/zed-industries/zed} (70k+ Stars), Rust}\\
+{\footnotesize Contributor to Zed, a code editor written in Rust. 56 PRs submitted (30 merged) across 15+ subsystems, totaling 6,800+ lines:}
+\begin{itemize}
+    \item {\footnotesize Found and fixed a macOS deadlock in the GPUI rendering framework where re-entrant key status changes froze the UI. (\href{https://github.com/zed-industries/zed/pull/51035}{\#51035}, Merged)}
+    \item {\footnotesize Reworked picker selection logic across 11 files so non-selectable entries can no longer confirm unintended actions in the command palette. (\href{https://github.com/zed-industries/zed/pull/50705}{\#50705}, Merged, +185/-51)}
+    \item {\footnotesize Fixed \texttt{formatter: "auto"} so it skips language servers that cannot actually format, instead of failing silently. (\href{https://github.com/zed-industries/zed/pull/50661}{\#50661}, Merged)}
+    \item {\footnotesize Stopped the agent panel from stealing focus away from modals on workspace restore, which was breaking keyboard shortcuts. (\href{https://github.com/zed-industries/zed/pull/50511}{\#50511}, Merged, +116/-62)}
+    \item {\footnotesize Fixed SVG renderer not rendering text when system fonts are unavailable in GPUI. (\href{https://github.com/zed-industries/zed/pull/51623}{\#51623}, Merged, +120/-7)}
+    \item {\footnotesize Fixed visible escape characters in LSP diagnostic messages rendered via markdown. (\href{https://github.com/zed-industries/zed/pull/51766}{\#51766}, Merged, +195/-27)}
+    \item {\footnotesize Fixed deleted files persisting in project search results. (\href{https://github.com/zed-industries/zed/pull/50551}{\#50551}, Merged, +175/-18)}
+    \item {\footnotesize Improved code folding to include closing delimiter on same line. (\href{https://github.com/zed-industries/zed/pull/50090}{\#50090}, Merged, +234/-26)}
+    \item {\footnotesize Fixed semantic tokens not appearing when opening buffer from multibuffer, a core editor feature for accurate syntax highlighting. (\href{https://github.com/zed-industries/zed/pull/53712}{\#53712}, Merged)}
+    \item {\footnotesize Debugged and fixed terminal rendering missing the first line due to floating-point tolerance in the layout calculation. (\href{https://github.com/zed-industries/zed/pull/52111}{\#52111}, Merged)}
+    \item {\footnotesize Reset terminal cursor blink on text send and keystroke actions to prevent visual inconsistency. (\href{https://github.com/zed-industries/zed/pull/53171}{\#53171}, Merged)}
+    \item {\footnotesize Fixed git panel context menu jitter, improving UX consistency during rapid interactions. (\href{https://github.com/zed-industries/zed/pull/52217}{\#52217}, Merged)}
+    \item {\footnotesize Also contributed to GPUI (font fallback, drag states), DAP debugger, theme selector, markdown rendering, and platform-specific fixes on macOS and Linux/X11. (\href{https://github.com/zed-industries/zed/pulls?q=author\%3ADnreikronos}{View all PRs})}
+    \item {\footnotesize 5 PRs (all merged) to the OCaml extension: added Dune package management support, MLX file support, LSP argument forwarding, and project root detection. (\href{https://github.com/zed-extensions/ocaml/pulls?q=author\%3ADnreikronos}{View all PRs})}
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Rust Compiler (rustc)} {\footnotesize $\cdot$ \href{https://github.com/rust-lang/rust}{github.com/rust-lang/rust} (103k+ Stars), Rust}\\
+{\footnotesize Contributor to the Rust compiler. 12 PRs submitted (5 merged) across diagnostics, type checking, traits, rustdoc, and bootstrap:}
+\begin{itemize}
+    \item {\footnotesize Suppressed garbled suggestions from strict provenance lints in macros, fixing incorrect diagnostic output. (\href{https://github.com/rust-lang/rust/pull/156861}{\#156861}, Merged, +122/-25)}
+    \item {\footnotesize Added crate root path display in misplaced crate-level attribute diagnostic. (\href{https://github.com/rust-lang/rust/pull/157025}{\#157025}, Merged, +44/-1)}
+    \item {\footnotesize Suppressed E0621 perpetual borrow suggestion to reduce misleading diagnostic noise. (\href{https://github.com/rust-lang/rust/pull/156892}{\#156892}, Merged, +108/-4)}
+    \item {\footnotesize Removed a redundant note when a \texttt{\#[derive]} is already suggested, cleaning up duplicate diagnostic output. (\href{https://github.com/rust-lang/rust/pull/157126}{\#157126}, Merged, +62/-17)}
+    \item {\footnotesize Fixed a rustdoc ICE on delegated async functions. (\href{https://github.com/rust-lang/rust/pull/157223}{\#157223}, Merged, +79/-12)}
+    \item {\footnotesize Reworked closure upvar capture so \texttt{.use} captures by reference in non-move closures (ergonomic\_clones). (\href{https://github.com/rust-lang/rust/pull/157270}{\#157270}, Open, +187/-2)}
+    \item {\footnotesize Used a placeholder self type for escaping dyn principals during well-formedness checking in the trait solver. (\href{https://github.com/rust-lang/rust/pull/157280}{\#157280}, Open, +78/-6)}
+    \item {\footnotesize Fixed an ICE while building a trait reference in method suggestions. (\href{https://github.com/rust-lang/rust/pull/157264}{\#157264}, Open, +107/-1)}
+    \item {\footnotesize Added suggestion for \texttt{generic\_const\_args} and \texttt{type const} items in const operation diagnostics. (\href{https://github.com/rust-lang/rust/pull/156968}{\#156968}, Open, +215/-28)}
+    \item {\footnotesize Fixed misattributed type inference error span for index expressions. (\href{https://github.com/rust-lang/rust/pull/156885}{\#156885}, Open, +97/-1)}
+    \item {\footnotesize Handled dotted table keys when parsing \texttt{bootstrap.toml} in the build system. (\href{https://github.com/rust-lang/rust/pull/157335}{\#157335}, Open, +104/-5)}
+    \item {\footnotesize Full list of contributions. (\href{https://github.com/rust-lang/rust/pulls?q=author\%3ADnreikronos}{View all PRs})}
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Sway (Fuel Labs)} {\footnotesize $\cdot$ \href{https://github.com/FuelLabs/sway}{github.com/FuelLabs/sway} (61k+ Stars), Rust}\\
+{\footnotesize Contributor to Sway, the smart contract language for the Fuel blockchain. 7 PRs submitted (1 merged) across compiler internals, the IR backend, and the formatter:}
+\begin{itemize}
+    \item {\footnotesize Optimized away zero-length MCP/MCPI instructions in the compiler backend. (\href{https://github.com/FuelLabs/sway/pull/7629}{\#7629}, Merged, +36/-4)}
+    \item {\footnotesize Fixed ICE when the data section exceeds $2^{12}$ words by handling oversized constant pools. (\href{https://github.com/FuelLabs/sway/pull/7643}{\#7643}, Open, +299/-73)}
+    \item {\footnotesize Fixed ICE and type mismatch with array type aliases and const generics. (\href{https://github.com/FuelLabs/sway/pull/7638}{\#7638}, Open, +73/-1)}
+    \item {\footnotesize Fixed an ICE in IR generation when reading an indexed ref mut array element. (\href{https://github.com/FuelLabs/sway/pull/7644}{\#7644}, Open, +31/-8)}
+    \item {\footnotesize Added ref-without-mut parameter checking for methods and associated functions. (\href{https://github.com/FuelLabs/sway/pull/7633}{\#7633}, Open, +97/-4)}
+    \item {\footnotesize Added ref mut mutability checking for method call arguments. (\href{https://github.com/FuelLabs/sway/pull/7630}{\#7630}, Open, +125/-37)}
+    \item {\footnotesize Fixed forc-fmt collapsing empty if-body with else onto one line. (\href{https://github.com/FuelLabs/sway/pull/7628}{\#7628}, Open, +77/-14)}
+\end{itemize}
+
+\cvsection{Projects}
+
+\noindent\textbf{\footnotesize DarkPool-Exchange, ZK Dark Pool DEX with Batch Auctions} {\footnotesize $\cdot$ \href{https://github.com/Dnreikronos/DarkPool-Exchange}{github.com/Dnreikronos/DarkPool-Exchange}}\\
+{\footnotesize DEX where orders stay private until settlement. Traders encrypt orders to the operator and the engine matches them in periodic batch auctions (every 5 seconds by default) with a clearing price per round. Built the Rust and Web3 layer: halo2 / arkworks circuits proving order validity, client-side proof generation in Rust (WASM + native CLI), the proof aggregator that batches individual proofs into one on-chain check, and integration with the Solidity verifier and settlement contract. Order size and price surface only after the round closes, cutting front-running and MEV exposure.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize zkSettle, ZK Compliance Infrastructure for Solana Stablecoins} {\footnotesize $\cdot$ \href{https://github.com/yuribodo/zksettle}{github.com/yuribodo/zksettle}}\\
+{\footnotesize Solana compliance layer for stablecoin fintechs. Proves travel-rule and sanctions conformance without putting user PII on-chain. Built the Rust and Web3 side: an Anchor program with a Token-2022 Transfer Hook that verifies Groth16 proofs (BN254) via Solana \texttt{alt\_bn128} syscalls in under 200K compute units, nullifier storage on Light Protocol state compression, and the off-chain Rust workspace (issuer service, OFAC sanctions updater with a Sparse Merkle Tree, Helius-webhook indexer that pins attestations to Arweave, axum API gateway). Proof generation runs in the user's browser via Noir + WASM, so no PII ever leaves the device.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Auto-Issue, Autonomous GitHub Issue Agent} {\footnotesize $\cdot$ \href{https://github.com/yuribodo/auto-issue}{github.com/yuribodo/auto-issue}}\\
+{\footnotesize Electron desktop + Go backend tool that drives a Kanban of GitHub issues through an AI agent (Claude Code, OpenAI Codex, or Gemini), running each agent locally as a CLI subprocess with PTY streaming. Built the entire Go backend: REST + SSE API, per-issue git worktree isolation, multi-provider agent orchestration with a self-review and human-approval loop (up to 3 feedback rounds), and PostgreSQL-backed state.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Crypto-Tip, Decentralized Tipping Platform} {\footnotesize $\cdot$ \href{https://github.com/Dnreikronos/crypto-tip}{github.com/Dnreikronos/crypto-tip} (35 Stars)}\\
+{\footnotesize Open-source funding platform where developers register projects to receive crypto donations. Wrote Solidity smart contracts (Ethereum) and Solana programs in Rust, with a Go backend and React/TypeScript frontend integrating MetaMask and Phantom wallets.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize givemoney.fun, Web3 Streaming Donation Platform} {\footnotesize $\cdot$ \href{https://github.com/Dnreikronos/givememoney.fun-backend}{Backend} \& \href{https://github.com/Dnreikronos/givememoney.fun-crypto}{Contracts}}\\
+{\footnotesize Crypto donation platform for Twitch and Kick streamers with real-time OBS alerts via WebSocket. Built the Go/Gin/GORM backend (Twitch + Kick OAuth, JWT refresh-token rotation, IP-based rate limiting, Zap + ELK logging) and the on-chain layer: a Solidity StreamerDonations contract (Foundry + OpenZeppelin) for ETH/ERC-20 donations and an Anchor program on Solana for SOL/SPL Token-2022 donations with PDA-based authorization.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Veste AI, AI-Powered Fashion Assistant} {\footnotesize $\cdot$ \href{https://github.com/Dnreikronos/HB02-2025_braindancers}{github.com/Dnreikronos/HB02-2025\_braindancers}}\\
+{\footnotesize Hackathon project (team of 3): React + Go web app that analyzes user-uploaded outfit photos via the Google Gemini API and returns personalized styling tips. Built the Go REST API powering the image upload and AI analysis pipeline.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Proof Of Learn, AI + Web3 Platform} {\footnotesize $\cdot$ \href{https://github.com/Dnreikronos/proof-of-learn}{github.com/Dnreikronos/proof-of-learn} (NearX \& ZKVerify Hackathon)}\\
+{\footnotesize Hackathon submission (NearX \& ZKVerify): generates AI-powered learning roadmaps via Google Gemini, validates knowledge through quizzes, and issues on-chain NFT credentials. Built with Solidity smart contracts (Foundry), a Node/Express + TypeScript API, and Circom ZK circuits for verifiable proof of learning.}
+
+\vspace{4pt}
+\noindent\textbf{\footnotesize Pattpay, Web3 Payment Gateway} {\footnotesize $\cdot$ \href{https://github.com/Dnreikronos/pattpay}{github.com/Dnreikronos/pattpay} (26 Stars, Cypherpunk Hackathon)}\\
+{\footnotesize Web3 payment gateway on Solana for one-time and recurring subscription payments. Smart contracts in Anchor/Rust use a delegate-authority PDA to charge subscribers automatically via a backend scheduler/processor pipeline (Fastify + Prisma + PostgreSQL). Supports SPL Token and Token-2022, with \textasciitilde400ms finality and <\$0.01 fees.}
+
+\cvsection{Skills}
+
+\noindent{\footnotesize
+\textbf{Languages:} Go (Golang), Java, TypeScript, JavaScript, Rust (Solana), Solidity, SQL, Bash\\
+\textbf{Backend:} Spring Boot, Spring Framework, JSF, NestJS, Express.js, REST API, GraphQL, gRPC, Microservices\\
+\textbf{Frontend:} React, Angular, Next.js, TypeScript, JavaScript, HTML5, CSS3\\
+\textbf{Cloud:} AWS (EC2, S3, RDS, Lambda), Oracle Cloud Infrastructure (OCI), Docker, Kubernetes, CI/CD, Linux\\
+\textbf{Databases:} PostgreSQL, MongoDB, Redis, Elasticsearch, MySQL, SQL Server, Query Optimization\\
+\textbf{Messaging:} Apache Kafka, RabbitMQ, Amazon SQS, Event-Driven Architecture\\
+\textbf{Architecture:} Microservices, Clean Architecture, SOLID, Design Patterns, DDD, TDD, Distributed Systems Design, System Architecture\\
+\textbf{DevOps:} Docker, ArgoCD, CI/CD Pipelines, Datadog, Grafana, ELK Stack, Prometheus, Application Performance Monitoring\\
+\textbf{Web3:} Solidity, Solana (Rust), Smart Contracts, Ethereum, DeFi, NFTs, MetaMask, Phantom Wallet, ZK Proofs, NEAR Protocol\\
+\textbf{AI/LLM:} Retrieval-Augmented Generation (RAG), LLM Application Development, AI-Assisted Development, AI Agents, Multi-Agent Orchestration, Prompt Engineering, Claude (Anthropic), Claude Code, OpenAI Codex, Google Gemini API\\
+\textbf{Tools:} Git, GitHub, GitLab, Jira, Agile/Scrum, RPA, Jaspersoft Reports, Salesforce CRM, Cursor, Claude Code
+}
+
+\cvsection{Education}
+
+\noindent\textbf{\footnotesize Universidade do Vale do Taquari, Univates} \hfill {\footnotesize 2021 - 2025}\\
+{\footnotesize Bachelor's Degree, Computer Science}
+
+\cvsection{Languages}
+
+\noindent{\footnotesize \textbf{English}, Proficient (Professional Working Proficiency) \quad \textbf{Portuguese}, Native Speaker}
+
+\end{document}
